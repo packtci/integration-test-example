@@ -29,6 +29,7 @@ jobs:
       - image: circleci/golang:1.9
     steps:
       - checkout
+      - run: go get gopkg.in/h2non/baloo.v3
       - run:
           name: "Run Unit Tests"
           command: go test
