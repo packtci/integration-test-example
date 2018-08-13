@@ -1,0 +1,42 @@
+version: 2
+jobs:
+  integration-test-node:
+    docker:
+      - image: circleci/node:8.11.3
+    steps:
+      - checkout
+      # special step to restore the dependency cache
+      - restore_cache:
+          key: v2-{{ checksum "package.json" }}
+      # special step to save the dependency cache
+      - run:
+          name: Install Dependencies
+          command: npm install
+      - save_cache:
+          key: v2-{{ checksum "package.json" }}
+          paths:
+            - ~/.npm
+            - ~/.cache
+      - run:
+          name: Run Tests
+          command: npm test
+      - run:
+          name: Run curl test
+          command: bash integration_test.sh
+  integration-test-golang:
+    working_directory: /go/src/github.com/packtci/integration-test-example
+    docker:
+      - image: circleci/golang:1.9
+    steps:
+      - checkout
+      - run:
+          name: "Run Unit Tests"
+          command: go test
+
+workflows:
+  version: 2
+  integration_tests:
+    jobs:
+      - integration-test-node
+      - integration-test-golang
+        

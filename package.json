@@ -1,0 +1,25 @@
+{
+  "name": "integration-test-example",
+  "version": "1.0.0",
+  "description": "A repository showing an integration test example.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha integration_test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/packtci/integration-test-example.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/packtci/integration-test-example/issues"
+  },
+  "homepage": "https://github.com/packtci/integration-test-example#readme",
+  "devDependencies": {
+    "mocha": "^5.2.0",
+    "supertest": "^3.1.0"
+  },
+  "dependencies": {}
+}
